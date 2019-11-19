@@ -130,7 +130,7 @@ class ExpressionLanguage
 
     protected function registerFunctions()
     {
-        $this->addFunction(ExpressionFunction::fromPhp('constant'));
+//        $this->addFunction(ExpressionFunction::fromPhp('constant'));
     }
 
     private function getLexer(): Lexer

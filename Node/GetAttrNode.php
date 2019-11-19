@@ -69,13 +69,16 @@ class GetAttrNode extends Node
         switch ($this->attributes['type']) {
             case self::PROPERTY_CALL:
                 $obj = $this->nodes['node']->evaluate($functions, $values);
-                if (!\is_object($obj)) {
-                    throw new \RuntimeException('Unable to get a property on a non-object.');
-                }
 
                 $property = $this->nodes['attribute']->attributes['value'];
 
-                return $obj->$property;
+                if (is_array($obj)) {
+                    return $obj[$property];
+                } else if (is_object($obj)) {
+                    return $obj->$property;
+                }
+
+                throw new \RuntimeException('Unable to get a property on a non-object.');
 
             case self::METHOD_CALL:
                 $obj = $this->nodes['node']->evaluate($functions, $values);

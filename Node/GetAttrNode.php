@@ -73,7 +73,7 @@ class GetAttrNode extends Node
                 $property = $this->nodes['attribute']->attributes['value'];
 
                 if (is_array($obj)) {
-                    return $obj[$property];
+                    return $obj[$property] ?? null;
                 } else if (is_object($obj)) {
                     return $obj->$property;
                 }
